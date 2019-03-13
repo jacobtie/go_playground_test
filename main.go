@@ -36,6 +36,7 @@ func _runTest1() {
 	fmt.Println(message)
 }
 
+/* Runs code that will not compile */
 func _runTest2() {
 	fmt.Println("\nTest 2\nThe following code will not compile:\n")
 
@@ -56,6 +57,7 @@ func _runTest2() {
 	fmt.Println(message)
 }
 
+/* Compiles a program using https://golang.org/compile API endpoint */
 func compileProgram(program string) (string, bool) {
 	// Sets the endpoint and HTTP method
 	url := "https://golang.org/compile"
