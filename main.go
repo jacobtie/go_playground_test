@@ -86,7 +86,7 @@ func compileProgram(program string) (string, bool) {
 
 	// Does the request, closes the request, and extracts the body
 	res, _ := client.Do(req)
-	defer res.Body.Close()
+	defer res.Body.Close() // Runs after function finishes
 	body, _ := ioutil.ReadAll(res.Body)
 
 	// Maps the output of the body to the data map
@@ -94,12 +94,7 @@ func compileProgram(program string) (string, bool) {
 	json.Unmarshal(body, &data)
 
 	// Creates and sets boolean variable to tell if there was a compiler error from input
-	var comp_err bool
-	if data["compile_errors"] != "" {
-		comp_err = true
-	} else {
-		comp_err = false
-	}
+	comp_err := data["compile_errors"] != ""
 
 	// Returns either the compile error message or string and whether a compile error occurred
 	return string(data["compile_errors"]) + string(data["output"]), comp_err
